@@ -1,4 +1,4 @@
-FROM node:15
+FROM node:18
 
 WORKDIR /usr/src/app
 
@@ -6,7 +6,11 @@ COPY . .
 
 RUN npm install
 
-RUN apt-get update && apt-get install -y wget
+RUN apt-get install -f
+
+RUN apt-get update
+
+RUN apt-get install -y wget
 
 ENV DOCKERIZE_VERSION v0.6.1
 RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
